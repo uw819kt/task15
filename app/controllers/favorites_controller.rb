@@ -1,7 +1,9 @@
 class FavoritesController < ApplicationController
 
   def create
-    current_user.favorites.create(blog_id: params[:blog_id])
+    @favorites = current_user.favorites.create(blog_id: params[:blog_id])
+    @blogs = Blog.find(params[:blog_id])
+    binding.irb
     respond_to do |format|
       format.js { render :index }
     # redirect_to blogs_path
@@ -9,7 +11,8 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    current_user.favorites.find_by(id: params[:id]).destroy
+    @favorites = current_user.favorites.find_by(id: params[:id])
+    @favorites.destroy if @favorites
     respond_to do |format|
       format.js { render :index }
     # redirect_to blogs_path
