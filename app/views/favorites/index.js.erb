@@ -1,2 +1,7 @@
-
-$(".material-icons").html("<%= j(render 'blogs/favorite', { blog_id: @favorites.blog_id, user_id: @favorites.user_id })");
+debugger
+# $(".material-icons").html("<%= j(render 'blogs/favorite', { blog_id: @favorites.blog_id, user_id: @favorites.user_id })");
+<% if Favorite.find_by(user_id: current_user.id, blog_id: blog.id) %>
+  $("#favorite-link delete").html("<%= j(render 'blogs/favorite', { blog_id: @favorites.blog_id, user_id: @favorites.user_id })");
+<% else %>
+  $("#favorite-link post").html("<%= j(render 'blogs/favorite', { blog_id: @favorites.blog_id, user_id: @favorites.user_id })");
+<% end %>
