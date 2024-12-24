@@ -1,2 +1,2 @@
 
-$(".material-icons").html("<%= j(render 'blogs/favorite', { blog_id: @favorites.blog_id, user_id: @favorites.user_id })");
+$("#favorite-<%= @blog.id %>").html("<%= j(render 'blogs/favorite', { blog: @blog, user_id: @favorite.user_id })%>");
